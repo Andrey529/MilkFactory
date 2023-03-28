@@ -12,9 +12,9 @@ using Npgsql;
 
 namespace MilkFactory
 {
-    public partial class ClientDelete : Form
+    public partial class ProductUpdate : Form
     {
-        public ClientDelete()
+        public ProductUpdate()
         {
             InitializeComponent();
         }
@@ -23,11 +23,14 @@ namespace MilkFactory
         {
             try
             {
-                string fio = textBox1.Text.ToString();
-                string address = textBox2.Text.ToString();
-                string phoneNumber = textBox3.Text.ToString();
+                string nameOld = textBox1.Text.ToString();
+                string typeOld = textBox2.Text.ToString();
 
-                if (!string.IsNullOrEmpty(fio) && !string.IsNullOrEmpty(address) && !string.IsNullOrEmpty(phoneNumber))
+                string nameNew = textBox4.Text.ToString();
+                string typeNew = textBox5.Text.ToString();
+
+                if (!string.IsNullOrEmpty(nameOld) && !string.IsNullOrEmpty(typeOld) &&
+                    !string.IsNullOrEmpty(nameNew) && !string.IsNullOrEmpty(typeNew))
                 {
                     string connectionString = "Host=localhost;Username=postgres;Password=01082020;Database=MilkFactory";
 
@@ -35,26 +38,28 @@ namespace MilkFactory
                     con.Open();
 
 
-                    string sql = "DELETE FROM mf.\"Client\" WHERE \"FIO\" = '" + fio + "' AND \"Address\" = '" + address + "' AND \"PhoneNumber\" = '" + phoneNumber + "'; ";
+                    string sql = "UPDATE mf.\"Product\" " +
+                                 "SET \"ProductName\" = '" + nameNew + "', \"Type\" = '" + typeNew + "'" +
+                                 "WHERE \"ProductName\" = '" + nameOld + "' AND \"Type\" = '" + typeOld + "'; ";
+
 
                     var cmd = new NpgsqlCommand(sql, con);
                     cmd.ExecuteNonQuery();
 
                     con.Close();
-                    textBox4.Text = "Entry successfully deleted";
+                    textBox3.Text = "Entry successfully updated";
                 }
                 else
                 {
-                    textBox4.Text = "The data must not be empty";
+                    textBox3.Text = "The data must not be empty";
                 }
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                textBox4.Text = "Error, something wrong";
+                textBox3.Text = "Error, something wrong";
             }
         }
-
     }
 }

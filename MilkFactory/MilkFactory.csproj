@@ -238,11 +238,29 @@
     <Compile Include="Product.Designer.cs">
       <DependentUpon>Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductAdd.Designer.cs">
+      <DependentUpon>ProductAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDelete.Designer.cs">
+      <DependentUpon>ProductDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductShow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProductShow.Designer.cs">
       <DependentUpon>ProductShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductUpdate.Designer.cs">
+      <DependentUpon>ProductUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -267,8 +285,17 @@
     <EmbeddedResource Include="Product.resx">
       <DependentUpon>Product.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProductAdd.resx">
+      <DependentUpon>ProductAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDelete.resx">
+      <DependentUpon>ProductDelete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductShow.resx">
       <DependentUpon>ProductShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductUpdate.resx">
+      <DependentUpon>ProductUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

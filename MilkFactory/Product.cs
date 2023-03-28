@@ -22,5 +22,23 @@ namespace MilkFactory
             ProductShow productShow = new ProductShow();
             productShow.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ProductAdd productAdd = new ProductAdd();
+            productAdd.Show(); 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ProductDelete productDelete = new ProductDelete();
+            productDelete.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ProductUpdate productUpdate = new ProductUpdate(); 
+            productUpdate.Show();
+        }
     }
 }
