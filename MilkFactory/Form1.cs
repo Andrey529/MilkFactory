@@ -55,6 +55,7 @@ namespace MilkFactory
             this.button3.TabIndex = 2;
             this.button3.Text = "Поставщики";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -97,6 +98,12 @@ namespace MilkFactory
         {
             Product product = new Product();
             product.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Vendor vendor = new Vendor();
+            vendor.Show();
         }
     }
 }

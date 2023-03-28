@@ -264,6 +264,36 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vendor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vendor.Designer.cs">
+      <DependentUpon>Vendor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VendorAdd.Designer.cs">
+      <DependentUpon>VendorAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VendorDelete.Designer.cs">
+      <DependentUpon>VendorDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VendorShow.Designer.cs">
+      <DependentUpon>VendorShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VendorUpdate.Designer.cs">
+      <DependentUpon>VendorUpdate.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,6 +336,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vendor.resx">
+      <DependentUpon>Vendor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorAdd.resx">
+      <DependentUpon>VendorAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorDelete.resx">
+      <DependentUpon>VendorDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorShow.resx">
+      <DependentUpon>VendorShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorUpdate.resx">
+      <DependentUpon>VendorUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
