@@ -12,9 +12,9 @@ using Npgsql;
 
 namespace MilkFactory
 {
-    public partial class OrderAdd : Form
+    public partial class OrderDelete : Form
     {
-        public OrderAdd()
+        public OrderDelete()
         {
             InitializeComponent();
         }
@@ -51,7 +51,7 @@ namespace MilkFactory
 
                     dr.Read();
                     int countProducts = dr.GetInt32(0);
-                    
+
                     dr.Close();
 
                     // product with selected parameters is exist
@@ -73,12 +73,13 @@ namespace MilkFactory
                                      "FROM mf.\"Client\" " +
                                      "WHERE \"FIO\" = '" + fio + "' AND \"Address\" = '" + address + "' " +
                                         "AND \"PhoneNumber\" = '" + phoneNumber + "'";
-                        
+
                         cmd.CommandText = sql;
                         dr = cmd.ExecuteReader();
                         dr.Read();
                         int countClients = dr.GetInt32(0);
                         dr.Close();
+
 
                         // if client with selected parameters is exist
                         if (countClients > 0)
@@ -88,7 +89,7 @@ namespace MilkFactory
                                   "FROM mf.\"Client\" " +
                                   "WHERE \"FIO\" = '" + fio + "' AND \"Address\" = '" + address + "' " +
                                     "AND \"PhoneNumber\" = '" + phoneNumber + "'";
-                            
+
                             cmd.CommandText = sql;
                             dr = cmd.ExecuteReader();
                             dr.Read();
@@ -96,48 +97,30 @@ namespace MilkFactory
                             dr.Close();
 
 
-                            // insert new order
-                            sql = "INSERT INTO mf.\"Order\" (" +
-                                  "\"ClientID\", \"ProductID\", \"ProductCount\", \"DateTime\") " +
-                                  "VALUES(" + clientID + ", " + productID + ", " + productCount + ", date_trunc('second', now()::timestamp)); ";
+                            // delete order
+                            sql = "DELETE FROM mf.\"Order\" " +
+                                  "WHERE \"OrderID\" IN( " +
+                                    "SELECT \"OrderID\" " +
+                                    "FROM mf.\"Order\" " +
+                                    "WHERE \"ClientID\" = " + clientID + " AND \"ProductID\" = " + productID + " AND \"ProductCount\" = " + productCount +
+                                    " ORDER BY \"DateTime\" DESC " +
+                                    "LIMIT 1 )";
+
+                            Console.WriteLine(sql);
                             cmd.CommandText = sql;
                             cmd.ExecuteNonQuery();
 
+                            textBox4.Text = "Entry successfully deleted";
                         }
                         else
                         {
-                            // insert new client with selected parameters
-                            sql = "INSERT INTO mf.\"Client\"(" +
-                                    "\"FIO\", \"Address\", \"PhoneNumber\") " +
-                                  "VALUES('" + fio + "', '" + address + "', '" + phoneNumber + "'); ";
-                            cmd.CommandText = sql;
-                            cmd.ExecuteNonQuery();
-
-
-                            // get client id 
-                            sql = "SELECT \"ClientID\" " +
-                                  "FROM mf.\"Client\" " +
-                                  "WHERE \"FIO\" = '" + fio + "' AND \"Address\" = '" + address + "' " +
-                                    "AND \"PhoneNumber\" = '" + phoneNumber + "'";
-                            cmd.CommandText = sql;
-                            dr = cmd.ExecuteReader();
-                            dr.Read();
-                            int clientID = dr.GetInt32(0);
-                            dr.Close();
-
-                            // insert new order
-                            sql = "INSERT INTO mf.\"Order\" (" +
-                                  "\"ClientID\", \"ProductID\", \"ProductCount\", \"DateTime\") " +
-                                  "VALUES(" + clientID + ", " + productID + ", " + productCount + ", date_trunc('second', now()::timestamp)); ";
-                            cmd.CommandText = sql;
-                            cmd.ExecuteNonQuery();
+                            textBox4.Text = "Cannot delete an order because the selected client does not exist";
                         }
-                        textBox4.Text = "Entry successfully added";
 
                     }
                     else
                     {
-                        textBox4.Text = "Cannot add an order because the selected product does not exist";
+                        textBox4.Text = "Cannot delete an order because the selected product does not exist";
                     }
                     con.Close();
                 }

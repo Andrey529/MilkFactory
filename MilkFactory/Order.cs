@@ -28,5 +28,17 @@ namespace MilkFactory
             OrderAdd orderAdd = new OrderAdd();
             orderAdd.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OrderDelete orderDelete = new OrderDelete();
+            orderDelete.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OrderUpdate orderUpdate = new OrderUpdate();
+            orderUpdate.Show();
+        }
     }
 }

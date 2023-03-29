@@ -232,6 +232,24 @@
     <Compile Include="Delivery.Designer.cs">
       <DependentUpon>Delivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryAdd.Designer.cs">
+      <DependentUpon>DeliveryAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryDelete.Designer.cs">
+      <DependentUpon>DeliveryDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryShow.Designer.cs">
+      <DependentUpon>DeliveryShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +267,12 @@
     </Compile>
     <Compile Include="OrderAdd.Designer.cs">
       <DependentUpon>OrderAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderDelete.Designer.cs">
+      <DependentUpon>OrderDelete.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderShow.cs">
       <SubType>Form</SubType>
@@ -336,6 +360,15 @@
     <EmbeddedResource Include="Delivery.resx">
       <DependentUpon>Delivery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryAdd.resx">
+      <DependentUpon>DeliveryAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryDelete.resx">
+      <DependentUpon>DeliveryDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryShow.resx">
+      <DependentUpon>DeliveryShow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -344,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderAdd.resx">
       <DependentUpon>OrderAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderDelete.resx">
+      <DependentUpon>OrderDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderShow.resx">
       <DependentUpon>OrderShow.cs</DependentUpon>

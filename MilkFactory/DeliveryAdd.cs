@@ -12,9 +12,9 @@ using Npgsql;
 
 namespace MilkFactory
 {
-    public partial class OrderAdd : Form
+    public partial class DeliveryAdd : Form
     {
-        public OrderAdd()
+        public DeliveryAdd()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@ namespace MilkFactory
         {
             try
             {
-                string fio = textBox1.Text.ToString();
+                string name = textBox1.Text.ToString();
                 string address = textBox2.Text.ToString();
                 string phoneNumber = textBox3.Text.ToString();
 
@@ -31,7 +31,7 @@ namespace MilkFactory
                 string productType = textBox6.Text.ToString();
                 string productCount = textBox7.Text.ToString();
 
-                if (!string.IsNullOrEmpty(fio) && !string.IsNullOrEmpty(address) && !string.IsNullOrEmpty(phoneNumber) &&
+                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(address) && !string.IsNullOrEmpty(phoneNumber) &&
                     !string.IsNullOrEmpty(productName) && !string.IsNullOrEmpty(productType) && !string.IsNullOrEmpty(productCount))
                 {
                     string connectionString = "Host=localhost;Username=postgres;Password=01082020;Database=MilkFactory";
@@ -51,7 +51,7 @@ namespace MilkFactory
 
                     dr.Read();
                     int countProducts = dr.GetInt32(0);
-                    
+
                     dr.Close();
 
                     // product with selected parameters is exist
@@ -68,67 +68,67 @@ namespace MilkFactory
                         int productID = dr.GetInt32(0);
                         dr.Close();
 
-                        // check count clients with selected parameters
-                        sql = "SELECT COUNT(\"FIO\") AS count " +
-                                     "FROM mf.\"Client\" " +
-                                     "WHERE \"FIO\" = '" + fio + "' AND \"Address\" = '" + address + "' " +
+                        // check count vendors with selected parameters
+                        sql = "SELECT COUNT(\"Name\") AS count " +
+                                     "FROM mf.\"Vendor\" " +
+                                     "WHERE \"Name\" = '" + name + "' AND \"Address\" = '" + address + "' " +
                                         "AND \"PhoneNumber\" = '" + phoneNumber + "'";
-                        
+
                         cmd.CommandText = sql;
                         dr = cmd.ExecuteReader();
                         dr.Read();
-                        int countClients = dr.GetInt32(0);
+                        int countVendors = dr.GetInt32(0);
                         dr.Close();
 
-                        // if client with selected parameters is exist
-                        if (countClients > 0)
+                        // if vendor with selected parameters is exist
+                        if (countVendors > 0)
                         {
-                            // get client id
-                            sql = "SELECT \"ClientID\" " +
-                                  "FROM mf.\"Client\" " +
-                                  "WHERE \"FIO\" = '" + fio + "' AND \"Address\" = '" + address + "' " +
+                            // get vendor id
+                            sql = "SELECT \"VendorID\" " +
+                                  "FROM mf.\"Vendor\" " +
+                                  "WHERE \"Name\" = '" + name + "' AND \"Address\" = '" + address + "' " +
                                     "AND \"PhoneNumber\" = '" + phoneNumber + "'";
-                            
+
                             cmd.CommandText = sql;
                             dr = cmd.ExecuteReader();
                             dr.Read();
-                            int clientID = dr.GetInt32(0);
+                            int vendorID = dr.GetInt32(0);
                             dr.Close();
 
 
-                            // insert new order
-                            sql = "INSERT INTO mf.\"Order\" (" +
-                                  "\"ClientID\", \"ProductID\", \"ProductCount\", \"DateTime\") " +
-                                  "VALUES(" + clientID + ", " + productID + ", " + productCount + ", date_trunc('second', now()::timestamp)); ";
+                            // insert new delivery
+                            sql = "INSERT INTO mf.\"Delivery\" (" +
+                                  "\"VendorID\", \"ProductID\", \"ProductCount\", \"DateTime\") " +
+                                  "VALUES(" + vendorID + ", " + productID + ", " + productCount + ", date_trunc('second', now()::timestamp)); ";
                             cmd.CommandText = sql;
                             cmd.ExecuteNonQuery();
 
                         }
                         else
                         {
-                            // insert new client with selected parameters
-                            sql = "INSERT INTO mf.\"Client\"(" +
-                                    "\"FIO\", \"Address\", \"PhoneNumber\") " +
-                                  "VALUES('" + fio + "', '" + address + "', '" + phoneNumber + "'); ";
+                            // insert new vendor with selected parameters
+                            sql = "INSERT INTO mf.\"Vendor\"(" +
+                                    "\"Name\", \"Address\", \"PhoneNumber\") " +
+                                  "VALUES('" + name + "', '" + address + "', '" + phoneNumber + "'); ";
                             cmd.CommandText = sql;
                             cmd.ExecuteNonQuery();
 
 
-                            // get client id 
-                            sql = "SELECT \"ClientID\" " +
-                                  "FROM mf.\"Client\" " +
-                                  "WHERE \"FIO\" = '" + fio + "' AND \"Address\" = '" + address + "' " +
+                            // get vendor id 
+                            sql = "SELECT \"VendorID\" " +
+                                  "FROM mf.\"Vendor\" " +
+                                  "WHERE \"Name\" = '" + name + "' AND \"Address\" = '" + address + "' " +
                                     "AND \"PhoneNumber\" = '" + phoneNumber + "'";
                             cmd.CommandText = sql;
                             dr = cmd.ExecuteReader();
                             dr.Read();
-                            int clientID = dr.GetInt32(0);
+                            int vendorID = dr.GetInt32(0);
                             dr.Close();
 
-                            // insert new order
-                            sql = "INSERT INTO mf.\"Order\" (" +
-                                  "\"ClientID\", \"ProductID\", \"ProductCount\", \"DateTime\") " +
-                                  "VALUES(" + clientID + ", " + productID + ", " + productCount + ", date_trunc('second', now()::timestamp)); ";
+                            // insert new delivery
+                            sql = "INSERT INTO mf.\"Delivery\" (" +
+                                  "\"VendorID\", \"ProductID\", \"ProductCount\", \"DateTime\") " +
+                                  "VALUES(" + vendorID + ", " + productID + ", " + productCount + ", date_trunc('second', now()::timestamp)); ";
                             cmd.CommandText = sql;
                             cmd.ExecuteNonQuery();
                         }
@@ -137,7 +137,7 @@ namespace MilkFactory
                     }
                     else
                     {
-                        textBox4.Text = "Cannot add an order because the selected product does not exist";
+                        textBox4.Text = "Cannot add an delivery because the selected product does not exist";
                     }
                     con.Close();
                 }
