@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace MilkFactory
 {
-    public partial class Product : Form
+    public partial class UserAdmin : Form
     {
         private string Username_;
         private string Password_;
-        public Product(string Username, string Password)
+        public UserAdmin(string Username, string Password)
         {
             Username_ = Username;
             Password_ = Password;
@@ -23,26 +23,32 @@ namespace MilkFactory
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProductShow productShow = new ProductShow(Username_, Password_);
-            productShow.Show();
+            Client client = new Client(Username_, Password_);
+            client.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ProductAdd productAdd = new ProductAdd(Username_, Password_);
-            productAdd.Show(); 
+            Product product = new Product(Username_, Password_);
+            product.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ProductDelete productDelete = new ProductDelete(Username_, Password_);
-            productDelete.Show();
+            Vendor vendor = new Vendor(Username_, Password_);
+            vendor.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ProductUpdate productUpdate = new ProductUpdate(Username_, Password_); 
-            productUpdate.Show();
+            Order order = new Order(Username_, Password_);
+            order.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Delivery delivery = new Delivery(Username_, Password_);
+            delivery.Show();
         }
     }
 }

@@ -10,10 +10,14 @@ using System.Windows.Forms;
 
 namespace MilkFactory
 {
-    public partial class OrderUpdate : Form
+    public partial class OrderUpdate: Form
     {
-        public OrderUpdate()
+        private string Username_;
+        private string Password_;
+        public OrderUpdate(string Username, string Password)
         {
+            Username_ = Username;
+            Password_ = Password;
             InitializeComponent();
         }
     }

@@ -15,32 +15,36 @@ namespace MilkFactory
 {
     public partial class Client : Form
     {
-        public Client()
+        private string Username_;
+        private string Password_;
+        public Client(string Username, string Password)
         {
+            Username_ = Username;
+            Password_ = Password;
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ClientShow clientShow = new ClientShow();
+            ClientShow clientShow = new ClientShow(Username_, Password_);
             clientShow.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ClientAdd clientAdd = new ClientAdd();
+            ClientAdd clientAdd = new ClientAdd(Username_, Password_);
             clientAdd.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ClientDelete clientDelete = new ClientDelete();
+            ClientDelete clientDelete = new ClientDelete(Username_, Password_);
             clientDelete.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ClientUpdate clientUpdate = new ClientUpdate();
+            ClientUpdate clientUpdate = new ClientUpdate(Username_, Password_);
             clientUpdate.Show();
         }
     }

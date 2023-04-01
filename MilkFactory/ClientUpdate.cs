@@ -14,8 +14,12 @@ namespace MilkFactory
 {
     public partial class ClientUpdate : Form
     {
-        public ClientUpdate()
+        private string Username_;
+        private string Password_;
+        public ClientUpdate(string Username, string Password)
         {
+            Username_ = Username;
+            Password_ = Password;
             InitializeComponent();
         }
 
@@ -34,7 +38,7 @@ namespace MilkFactory
                 if (!string.IsNullOrEmpty(fioOld) && !string.IsNullOrEmpty(addressOld) && !string.IsNullOrEmpty(phoneNumberOld) &&
                     !string.IsNullOrEmpty(fioNew) && !string.IsNullOrEmpty(addressNew) && !string.IsNullOrEmpty(phoneNumberNew))
                 {
-                    string connectionString = "Host=localhost;Username=postgres;Password=01082020;Database=MilkFactory";
+                    string connectionString = "Host=localhost;Username=" + Username_ + ";Password=" + Password_ + ";Database=MilkFactory";
 
                     var con = new NpgsqlConnection(connectionString);
                     con.Open();
